@@ -25,7 +25,7 @@
             //The name should not be empty
             if (String.IsNullOrEmpty(Name) || String.IsNullOrEmpty(obj.Name))
                 return false;
-            return Name.Equals(obj.Name);
+            return Name.Equals(obj.Name, StringComparison.CurrentCultureIgnoreCase);
         }
 
         public override bool Equals(object? obj)

@@ -1,7 +1,6 @@
 ﻿using LyricFinderCore.Exceptions;
 using LyricFinderCore.Interfaces;
 using LyricFinderCore.Models;
-using System.Xml.Linq;
 
 namespace LyricFinderCore
 {
@@ -56,7 +55,7 @@ namespace LyricFinderCore
         /// <param name="partialName"></param>
         /// <param name="artistComparer"></param>
         /// <returns></returns>
-        public List<Artist> SearchArtists(string partialName, IComparer<Artist>? artistComparer = null)
+        public List<Artist> SearchArtists(string partialName, IComparer<Artist>? artistComparer = null, int limit=20)
         {
             if (String.IsNullOrEmpty(partialName))
                 throw new InvalidPartialNameException();
@@ -68,7 +67,11 @@ namespace LyricFinderCore
             var result = artistSet.ToList();
             if(artistComparer!=null)
                 result.Sort(artistComparer);
-            return result;
+
+            if (result.Count > limit)
+                return result.GetRange(0, limit);
+            else
+                return result;
         }
         /// <summary>
         /// This method is used to call song finders to search the song by artist
