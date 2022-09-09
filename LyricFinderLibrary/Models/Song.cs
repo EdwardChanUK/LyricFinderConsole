@@ -16,11 +16,17 @@
         public bool Equals(Song? obj)
         {
             if(obj == null) return false;
-            if (!Artist.Equals(obj.Artist))
+            
+            if (Artist == null && obj.Artist != null)
                 return false;
+            else if (Artist != null && obj.Artist == null)
+                return false;
+            else if (Artist != null && obj.Artist != null && !Artist.Equals(obj.Artist))
+                return false;
+
             if (String.IsNullOrEmpty(Title) || String.IsNullOrEmpty(obj.Title))
                 return false;
-            return Title.Equals(obj.Title);
+            return Title.Equals(obj.Title, StringComparison.CurrentCultureIgnoreCase);
         }
         public override bool Equals(object? obj)
         {
