@@ -120,10 +120,14 @@ namespace LyricFinderConsoleTest
         {
             //arrange
             MusicBrainzFinder finder = new MusicBrainzFinder();
-            MusicBrainzArtist artist = new MusicBrainzArtist(artistId);
-            artist.Id = artistId;
+            MusicBrainzArtist artist = new MusicBrainzArtist(artistId)
+            {
+                Id = artistId
+            };
+
             //act
             var result = finder.SearchSongs(artist);
+            
             //assert
             Assert.That(result, Is.Not.Empty);
         }
@@ -138,10 +142,14 @@ namespace LyricFinderConsoleTest
         {
             //arrange
             MusicBrainzFinder finder = new MusicBrainzFinder();
-            MusicBrainzArtist artist = new MusicBrainzArtist(artistId);
-            artist.Id = artistId;
+            MusicBrainzArtist artist = new MusicBrainzArtist(artistId)
+            {
+                Id = artistId
+            };
+
             //act
             var result = finder.SearchSongs(artist);
+            
             //assert
             Assert.That(result, Is.Empty);
         }
