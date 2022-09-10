@@ -10,6 +10,7 @@ Steps
 # Design
 https://miro.com/app/board/uXjVPZSXGfM=/?share_link_id=106708272737
 
-# Limitation
-Currently the program is connecting the mock server of LyricsOvh Api since the LyricsOvh production is down. (Details: https://github.com/NTag/lyrics.ovh/issues/15)
-And the other lyrics api has limited request which may not more than 4000 request per day if free.
+# Remarks
+- Currently using chart lyrics api to retrieve the lyrics (Website: http://www.chartlyrics.com/api.aspx)
+- The class LyricsOvhFinder has not used currently since the LyricsOvh production is down. (Details: https://github.com/NTag/lyrics.ovh/issues/15), but tested with mock server. So it can switch to use when their production server remain normal.
+- And most of lyrics api has limited request which may not more than 4000 request per day if free.
