@@ -1,4 +1,5 @@
 ﻿using LyricFinderCore;
+using LyricFinderCore.Finders.ChartLyrics;
 using LyricFinderCore.Finders.LyricsOvh;
 using LyricFinderCore.Finders.MusicBrainz;
 using LyricFinderCore.Helpers;
@@ -18,7 +19,7 @@ namespace LyricFinderConsole
         public LyricFinderConsoleApp()
         {
             MusicBrainzFinder musicBrainzFinder = new MusicBrainzFinder();
-            LyricsOvhFinder lyricsOvhFinder = new LyricsOvhFinder();
+            ChartLyricsFinder chartLyricsFinder = new ChartLyricsFinder();
             _service = new LyricFinderService(
                 new List<IArtistFinder>()
                 {
@@ -30,7 +31,7 @@ namespace LyricFinderConsole
                 },
                 new List<ILyricFinder>()
                 {
-                    lyricsOvhFinder
+                    chartLyricsFinder
                 });
         }
         /// <summary>
@@ -66,7 +67,7 @@ namespace LyricFinderConsole
                 var result = Console.ReadLine();
                 if ("Y".Equals(result))
                     return true;
-                if ("Y".Equals(result))
+                if ("N".Equals(result))
                     return false;
                 Console.WriteLine("Your input is incorrect. Please input 'Y' or 'N'.");
             }
@@ -92,6 +93,13 @@ namespace LyricFinderConsole
                 }
             }
 
+            if (totalLyrics == 0)
+            {
+                Console.WriteLine("No lyrics can be found.");
+                return 0;
+            }
+
+            Console.WriteLine($"There are {totalLyrics} lyrics be found.");
             float averageWordsCount = totalWordsInLyrics / (float)totalLyrics;
             Console.WriteLine($"The average word count of the lyrics is {averageWordsCount}.");
             return averageWordsCount;
@@ -173,9 +181,12 @@ namespace LyricFinderConsole
 
             Console.WriteLine($"I found the following artists has similar name:");
             var index = 1;
-            foreach (var similarArtist in similarArtists)
+            if (similarArtists != null)
             {
-                Console.WriteLine($"{index++}. {similarArtist.Name}");
+                foreach (var similarArtist in similarArtists)
+                {
+                    Console.WriteLine($"{index++}. {similarArtist.Name}");
+                }
             }
 
             var artistNumberStr = AskForArtistNumberInput();
@@ -186,7 +197,7 @@ namespace LyricFinderConsole
             while (inputTime < MaxInputArtistNumberTime)
             {
                 var canParse = Int32.TryParse(artistNumberStr, out artistNumber);
-                if (canParse && artistNumber < similarArtists.Count)
+                if (canParse && artistNumber < similarArtists?.Count)
                 {
                     isFound = true;
                     break;
@@ -197,7 +208,7 @@ namespace LyricFinderConsole
                 artistNumberStr = Console.ReadLine();
             }
 
-            if (isFound)
+            if (isFound && similarArtists?.Count>0)
                 return similarArtists[artistNumber - 1];
             return null;
         }

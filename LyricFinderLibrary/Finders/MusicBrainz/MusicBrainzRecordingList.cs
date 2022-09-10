@@ -4,6 +4,6 @@ namespace LyricFinderCore.Finders.MusicBrainz
 {
     public class MusicBrainzRecordingList
     {
-        public Song[] Recordings { get; set; }
+        public Song[]? Recordings { get; set; }
     }
 }

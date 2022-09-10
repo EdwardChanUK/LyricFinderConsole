@@ -33,5 +33,12 @@
             if (obj == null) return false;
             return Equals(obj as Song);
         }
+
+        public override int GetHashCode()
+        {
+            if (Artist == null)
+                return Title.GetHashCode();
+            return HashCode.Combine(Artist.GetHashCode(), Title.GetHashCode());
+        }
     }
 }

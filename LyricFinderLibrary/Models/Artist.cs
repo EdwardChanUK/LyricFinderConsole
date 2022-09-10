@@ -18,7 +18,6 @@
         {
             Name = name;
         }
-
         public bool Equals(Artist? obj)
         {
             if(obj == null) return false;
@@ -27,11 +26,15 @@
                 return false;
             return Name.Equals(obj.Name, StringComparison.CurrentCultureIgnoreCase);
         }
-
         public override bool Equals(object? obj)
         {
             if(obj == null) return false;
             return Equals(obj as Artist);
+        }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
         }
     }
 }

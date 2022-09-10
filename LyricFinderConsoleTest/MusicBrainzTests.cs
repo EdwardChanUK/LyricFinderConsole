@@ -13,7 +13,7 @@ namespace LyricFinderConsoleTest
         /// <returns></returns>
         [TestCase("Michael Jackson")]
         [TestCase("David Bowie")]
-        public async Task SearchArtist_InputValidName_ArtistCanBeFound(string artistName)
+        public void SearchArtist_InputValidName_ArtistCanBeFound(string artistName)
         {
             //arrange
             MusicBrainzFinder finder = new MusicBrainzFinder();
@@ -30,7 +30,7 @@ namespace LyricFinderConsoleTest
         /// <returns></returns>
         [TestCase("Michael xxx")]
         [TestCase("David xxx")]
-        public async Task SearchArtist_InputInvalidName_ArtistCanBeFound(string artistName)
+        public void SearchArtist_InputInvalidName_ArtistCanBeFound(string artistName)
         {
             //arrange
             MusicBrainzFinder finder = new MusicBrainzFinder();
@@ -47,7 +47,7 @@ namespace LyricFinderConsoleTest
         /// <returns></returns>
         [TestCase("Michael")]
         [TestCase("David")]
-        public async Task SearchArtists_InputValidPartialName_ArtistCanBeFound(string partialName)
+        public void SearchArtists_InputValidPartialName_ArtistCanBeFound(string partialName)
         {
             //arrange
             MusicBrainzFinder finder = new MusicBrainzFinder();
@@ -64,7 +64,7 @@ namespace LyricFinderConsoleTest
         /// <returns></returns>
         [TestCase("Michaelxxx")]
         [TestCase("Davidxxx")]
-        public async Task SearchArtists_InputInvalidPartialName_ArtistCanBeFound(string partialName)
+        public void SearchArtists_InputInvalidPartialName_ArtistCanBeFound(string partialName)
         {
             //arrange
             MusicBrainzFinder finder = new MusicBrainzFinder();
@@ -83,7 +83,7 @@ namespace LyricFinderConsoleTest
         [TestCase("David Bowie")]
         [TestCase("Harry Styles")]
         [TestCase("Westlife")]
-        public async Task SearchSongs_InputValidArtist_SongsCanBeFound(string artistName)
+        public void SearchSongs_InputValidArtist_SongsCanBeFound(string artistName)
         {
             //arrange
             MusicBrainzFinder finder = new MusicBrainzFinder();
@@ -100,7 +100,7 @@ namespace LyricFinderConsoleTest
         /// <returns></returns>
         [TestCase("Michael xxxx")]
         [TestCase("David xxxx")]
-        public async Task SearchSongs_InputInvalidArtist_SongsCanBeFound(string artistName)
+        public void SearchSongs_InputInvalidArtist_SongsCanBeFound(string artistName)
         {
             //arrange
             MusicBrainzFinder finder = new MusicBrainzFinder();
@@ -116,7 +116,7 @@ namespace LyricFinderConsoleTest
         /// <param name="artistName"></param>
         /// <returns></returns>
         [TestCase("65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab")]
-        public async Task SearchSongs_InputValidArtistId_SongsCanBeFound(string artistId)
+        public void SearchSongs_InputValidArtistId_SongsCanBeFound(string artistId)
         {
             //arrange
             MusicBrainzFinder finder = new MusicBrainzFinder();
@@ -138,7 +138,7 @@ namespace LyricFinderConsoleTest
         /// <param name="artistId"></param>
         /// <returns></returns>
         [TestCase("65f4f0c5-ef9e-490c-aee3-909e7ae6b2abxxx")]
-        public async Task SearchSongs_InputInvalidArtistId_SongsCanBeFound(string artistId)
+        public void SearchSongs_InputInvalidArtistId_SongsCanBeFound(string artistId)
         {
             //arrange
             MusicBrainzFinder finder = new MusicBrainzFinder();
