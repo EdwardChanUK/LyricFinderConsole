@@ -1,4 +1,5 @@
-﻿using LyricFinderCore.Exceptions;
+﻿using LyricFinderCore.Comparer;
+using LyricFinderCore.Exceptions;
 using LyricFinderCore.Interfaces;
 using LyricFinderCore.Models;
 
@@ -64,7 +65,7 @@ namespace LyricFinderCore
             {
                 artistSet.UnionWith(finder.SearchArtists(partialName));
             }
-            var result = artistSet.ToList();
+            var result = artistSet.Distinct(ArtistComparer.Instance).ToList();
             if(artistComparer!=null)
                 result.Sort(artistComparer);
 
@@ -86,7 +87,7 @@ namespace LyricFinderCore
             {
                 songSet.UnionWith(finder.SearchSongs(artist));
             }
-            List<Song> result = songSet.ToList();
+            List<Song> result = songSet.Distinct(SongComparer.Instance).ToList();
             if(songComparer!=null)
                 result.Sort(songComparer);
             return result;

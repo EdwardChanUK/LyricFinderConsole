@@ -22,7 +22,8 @@ namespace LyricFinderConsoleTest
         [TestCase("Hello\nWorld", 2)]
         [TestCase("Hello\rWorld", 2)]
         [TestCase("Hello\n\rWorld", 2)]
-        public async Task WordsCount_InputContent_WordsCanBeCount(string content, int expectedCount)
+        [TestCase("Hello ? World", 2)]
+        public void WordsCount_InputContent_WordsCanBeCount(string content, int expectedCount)
         {
             //arrange
             //act

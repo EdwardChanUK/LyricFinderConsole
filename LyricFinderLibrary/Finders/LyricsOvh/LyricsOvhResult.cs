@@ -2,6 +2,6 @@
 {
     public class LyricsOvhResult
     {
-        public string Lyrics { get; set; }
+        public string? Lyrics { get; set; }
     }
 }

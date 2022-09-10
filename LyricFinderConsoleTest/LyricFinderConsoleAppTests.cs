@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using LyricFinderConsole;
+﻿using LyricFinderConsole;
 using LyricFinderCore.Models;
 
 namespace LyricFinderConsoleTest
@@ -12,8 +11,8 @@ namespace LyricFinderConsoleTest
         /// </summary>
         private class TestLyricFinderConsoleApp : LyricFinderConsoleApp
         {
-            private string _artistNumberInput;
-            private string _artistName;
+            private readonly string _artistNumberInput;
+            private readonly string _artistName;
             public TestLyricFinderConsoleApp(string artistName="", string artistNumberInput = "1")
             {
                 _artistNumberInput = artistNumberInput;
@@ -121,12 +120,15 @@ namespace LyricFinderConsoleTest
         /// <summary>
         /// Test the CalculateAverageWordCountOfLyrics method with valid songs
         /// </summary>
-        [Test]
-        public void CalculateAverageWordCountOfLyrics_InputValidSongs_AverageCanBeFound()
+        [TestCase("Boyzone", "Words")]
+        [TestCase("Michael Jackson", "Bad")]
+        [TestCase("Lady Gaga", "Poker Face")]
+        [TestCase("Westlife", "I Need You")]
+        public void CalculateAverageWordCountOfLyrics_InputValidSongs_AverageCanBeFound(string artistName, string songTitle)
         {
             //arrange
-            Artist artist = new Artist("Harry Styles");
-            Song song = new Song(artist, "As it was");
+            Artist artist = new Artist(artistName);
+            Song song = new Song(artist, songTitle);
             List<Song> songs = new List<Song>(){song}; 
             LyricFinderConsoleApp app = new LyricFinderConsoleApp();
             //act
@@ -138,8 +140,8 @@ namespace LyricFinderConsoleTest
         /// <summary>
         /// Test Run
         /// </summary>
-        [TestCase("Harry Styles", "")]
-        [TestCase("Harry", "1")]
+        [TestCase("Boyzone", "")]
+        [TestCase("Michael", "10")]
         public void Run_AllSteps_Success(string artistName, string artistNumberInput)
         {
             //arrange

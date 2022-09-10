@@ -12,7 +12,7 @@ namespace LyricFinderConsoleTest
         /// <param name="artistName"></param>
         /// <returns></returns>
         [TestCase("Harry Styles", "As it was")]
-        public async Task GetLyric_InputValidSong_LyricCanBeFound(string artistName, string songName)
+        public void GetLyric_InputValidSong_LyricCanBeFound(string artistName, string songName)
         {
             //arrange
             LyricsOvhFinder finder = new LyricsOvhFinder();
@@ -32,7 +32,7 @@ namespace LyricFinderConsoleTest
         /// <param name="artistName"></param>
         /// <returns></returns>
         [TestCase("Harry Styles", "Sunflower, Vol. 6")]
-        public async Task GetLyric_InputInvalidSong_LyricCannotBeFound(string artistName, string songName)
+        public void GetLyric_InputInvalidSong_LyricCannotBeFound(string artistName, string songName)
         {
             //arrange
             LyricsOvhFinder finder = new LyricsOvhFinder();
